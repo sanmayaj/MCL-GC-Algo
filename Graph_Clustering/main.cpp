@@ -62,7 +62,7 @@ void enteradjacencymatrix(double Adjacency_Matrix[][100])
     }
 }
 
-void tagsdata(double Adjacency_Matrix[][100]);
+int tagsdata(double Adjacency_Matrix[][100]);
 
 int main()
 {
@@ -73,7 +73,7 @@ int main()
     for(int i = 0; i < n; i++)                      //INPUT ADJACENCY MATRIX FROM TERMINAL
         for(int j = 0; j < n; j++)
             cin>>Adjacency_Matrix[i][j];*/
-    tagsdata(Adjacency_Matrix);                     //INPUT FROM TEXT FILE
+    n = tagsdata(Adjacency_Matrix);                     //INPUT FROM TEXT FILE
     int iterations = 10;
     normalize(Adjacency_Matrix, n);
     while(iterations--)
@@ -109,6 +109,6 @@ int main()
         printvec(*it);
         cout<<endl;
     }
-    printmat(Adjacency_Matrix, n);
+    //printmat(Adjacency_Matrix, n);
     return 0;
 }
