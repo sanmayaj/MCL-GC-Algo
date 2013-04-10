@@ -27,7 +27,26 @@ vector<string> extracttags(string s)
     return v;
 }
 
-void tagsdata(double Adjacency_Matrix[][100])
+vector<string> extracttags1(string s)
+{
+    vector<string> v;
+    string tag;
+    tag = "";
+    for(size_t i = 0; i < s.length(); i++)
+    {
+        if(s[i]!= ',')
+            tag += s[i];
+        else
+        {
+            v.push_back(tag);
+            tag = "";
+        }
+    }
+    v.push_back(tag);
+    return v;
+}
+
+int tagsdata(double Adjacency_Matrix[][100])
 {
     ifstream file;
     string s;
@@ -36,12 +55,14 @@ void tagsdata(double Adjacency_Matrix[][100])
     if(!file.is_open())
     {
         cout<<"Unable to open file"<<endl;
-        return;
+        return 0;
     }
-    while(!file.good())
+    int linecount = 0;
+    while(file.good())
     {
         getline(file, s);
-        tagdat.push_back(extracttags(s));
+        tagdat.push_back(extracttags1(s));
+        linecount++;
     }
     /*int count = 0;
     while(count < 80)
@@ -55,4 +76,6 @@ void tagsdata(double Adjacency_Matrix[][100])
         for(size_t j = 0; j < tagdat.size(); j++)
             Adjacency_Matrix[i][j] = calcweight(tagdat[i], tagdat[j]);
     }
+    file.close();
+    return linecount;
 }
